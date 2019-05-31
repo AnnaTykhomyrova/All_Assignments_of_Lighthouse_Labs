@@ -45,7 +45,8 @@ var library = {
   }
  };
 
- //printPlaylists(library);
+ printPlaylists(library);
+ console.log("**************************************************");
 
 // prints a list of all tracks, in the form:
 // st01: Code Monkey by Jonathan Coulton (Thing a Week Three)
@@ -68,7 +69,8 @@ var printTracks = function () {
   }
 };
 
-//printTracks(library);
+printTracks(library);
+console.log("**************************************************");
 
 // prints a list of tracks for a given playlist, in the form:
 // p01: Coding Music - 2 tracks
@@ -94,16 +96,14 @@ var printPlaylist = function (playlistId) {
   }
 
 };
-// printPlaylist('p01');
-
+printPlaylist('p01');
 // adds an existing track to an existing playlist
 
 var addTrackToPlaylist = function (trackId, playlistId) {
   return library.playlists[playlistId].tracks.push(trackId);
 };
 
- // addTrackToPlaylist('t01', 'p02');
- // console.log(library.playlists);
+addTrackToPlaylist('t01', 'p02');
 
 
 // generates a unique id
@@ -114,20 +114,31 @@ var uid = function() {
 };
 
 
+
 // adds a track to the library
 
 var addTrack = function (name, artist, album) {
-
+  let myId = uid();
+  library.tracks[myId] = { id: myId,
+                          name: name,
+                          artist: artist,
+                          album: album
+                        };
 };
 
+addTrack('some name', 'some artist', 'some album');
 
 // adds a playlist to the library
 
 var addPlaylist = function (name) {
-
+  let myId = uid();
+  library.playlists[myId] = { id: myId,
+                              name: name,
+                              tracks: []
+                            }
 };
 
-
+addPlaylist('some playlist');
 // STRETCH:
 // given a query string string, prints a list of tracks
 // where the name, artist or album contains the query string (case insensitive)
